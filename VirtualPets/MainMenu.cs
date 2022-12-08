@@ -12,7 +12,7 @@ namespace VirtualPets
     {
         public static bool Menu()
         {
-            Console.Title = "Pet Simulator"; //title of the program pop up window
+            Title = "Pet Simulator"; //title of the program pop up window
             WriteLine($@"
  ██████╗ ███████╗████████╗    ███████╗██╗███╗   ███╗██╗   ██╗██╗      █████╗ ████████╗ ██████╗ ██████╗ 
  ██╔══██╗██╔════╝╚══██╔══╝    ██╔════╝██║████╗ ████║██║   ██║██║     ██╔══██╗╚══██╔══╝██╔═══██╗██╔══██╗
@@ -27,19 +27,19 @@ namespace VirtualPets
             WriteLine("[Esc] Quit");
             Write("\r\nSelect an option: ");
 
-            var choice = Console.ReadKey();
+            var choice = ReadKey();
             switch (choice.Key)
             {
                 case ConsoleKey.Enter:
-                    //Start();
-                    StartGame.Game();
+                    Start();
                     return false;
                 case ConsoleKey.Escape:
                     Exit();
                     return true;
                 default:
                     Clear();
-                    Console.WriteLine("Invalid command, wait and try again...");
+                    WriteLine("Invalid command, wait and try again...");
+                    Menu();
                     return false;
                     
             }
