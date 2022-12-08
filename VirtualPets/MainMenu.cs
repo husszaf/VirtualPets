@@ -12,7 +12,7 @@ namespace VirtualPets
     {
         public static bool Menu()
         {
-            //Clear();
+            Console.Title = "Pet Simulator"; //title of the program pop up window
             WriteLine($@"
  ██████╗ ███████╗████████╗    ███████╗██╗███╗   ███╗██╗   ██╗██╗      █████╗ ████████╗ ██████╗ ██████╗ 
  ██╔══██╗██╔════╝╚══██╔══╝    ██╔════╝██║████╗ ████║██║   ██║██║     ██╔══██╗╚══██╔══╝██╔═══██╗██╔══██╗
@@ -20,7 +20,7 @@ namespace VirtualPets
  ██╔═══╝ ██╔══╝     ██║       ╚════██║██║██║╚██╔╝██║██║   ██║██║     ██╔══██║   ██║   ██║   ██║██╔══██╗
  ██║     ███████╗   ██║       ███████║██║██║ ╚═╝ ██║╚██████╔╝███████╗██║  ██║   ██║   ╚██████╔╝██║  ██║
  ╚═╝     ╚══════╝   ╚═╝       ╚══════╝╚═╝╚═╝     ╚═╝ ╚═════╝ ╚══════╝╚═╝  ╚═╝   ╚═╝    ╚═════╝ ╚═╝  ╚═╝
-                                                                                                      ");
+                                                                                                      ");  // ASCII text
 
             WriteLine("Choose an option below:");
             WriteLine("[Enter] Start game");
@@ -31,9 +31,9 @@ namespace VirtualPets
             switch (choice.Key)
             {
                 case ConsoleKey.Enter:
-                    Start();
-                    return true;
-                    break;
+                    //Start();
+                    StartGame.Game();
+                    return false;
                 case ConsoleKey.Escape:
                     Exit();
                     return true;

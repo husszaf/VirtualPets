@@ -49,13 +49,14 @@ namespace VirtualPets
             WriteLine($"Pet Name: {dog.Name}\nHunger level: {Pets.Hunger}\nMood level: {Pets.Mood}\nHealth level: {Pets.Health} \nPlayer has {Player.Coin[0]} coins\nRoom temperature: {Pets.roomTemperature}\nBalls left: {Player.Toys[0]}\n\n");
             Player.Coin[0]++;
             WriteLine("To interact with the Dog choose an option below:");
-            WriteLine("[1] Feed Dog");
-            WriteLine("[2] Give bone");
-            WriteLine("[3] Give medicine");
+            WriteLine("[1] Feed Dog -> Cost: 5 Coins");
+            WriteLine("[2] Give bone -> Cost: 5 Coins");
+            WriteLine("[3] Give medicine -> Cost: 5 Coins");
             WriteLine("[4] Tend to Pet");
             WriteLine("[5] Play with the ball");
-            WriteLine($"[6] Purchase the ball\n");
-            WriteLine("\n\t\t\t\t\tThe statistic update time is 10 seconds");
+            WriteLine("[6] Purchase the ball -> Cost: 1 Coins");
+            WriteLine($"[7] Adjust room temperature\n");
+            WriteLine("\n\t\t\t\t\tThe statistics update time is 5 seconds");
             Thread.Sleep(5000);
         }
 
@@ -64,11 +65,18 @@ namespace VirtualPets
             for (int i = 100; i == 100;)
             {
                 Pets.roomTemperature--;
-                Thread.Sleep(15000);
+                
                 if (Pets.roomTemperature >= 30)
                 {
                     WriteLine("Room is too hot!");
+                    Pets.Health--;
                 }
+                else if(Pets.roomTemperature <= 15)
+                {
+                    Console.WriteLine("Room is too cold!");
+                    Pets.Health--;
+                }
+                Thread.Sleep(15000);
 
             }
         }

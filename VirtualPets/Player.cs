@@ -23,7 +23,7 @@ namespace VirtualPets
         {
             if (Coin[0] >= 5)
             {
-                if (Pets.Hunger <= 90 && Pets.Hunger != 100)
+                if (Pets.Hunger <= 99 && Pets.Hunger != 100)
                 {
                     Pets.Hunger -= Pets.Mood * Pets.Hunger;
                     if(Pets.Hunger <= 0)
@@ -59,7 +59,7 @@ namespace VirtualPets
             
             if (Coin[0] >= 5)
             {
-                if (Pets.Mood <= 90 && Pets.Mood != 100)
+                if (Pets.Mood <= 99 && Pets.Mood != 100)
                 {
                     Pets.Mood += 5;
                     Coin[0] = Coin[0] - 5;
@@ -71,7 +71,6 @@ namespace VirtualPets
                     WriteLine("  the Pet mood is not low. The pet is happy\n");
                 }
 
-               52
             }
 
             else if (Coin[0] <= 5)
@@ -84,25 +83,39 @@ namespace VirtualPets
 
         public static void GiveMedicine() //Shop method to purchase different items
         {
-            if (Coin[0] >= 12) //If the user has at least 12 coins(1 health costs 12 coins and gives 20 points of health)
+            if (Coin[0] >= 5) //If the user has at least 5 coins(1 health costs 12 coins and gives 20 points of health)
             {
-                if (Pets.Health <= 80) //if the dog's health is 100 or below
+                if (Pets.Health <= 99) //if the dog's health is 100 or below
                 {
-                    Pets.Health += Pets.Health + 20;
                     
-                    Coin[0] = Coin[0] - 12;
-                    WriteLine("  the dog's health is increased by 20 points");
-                    Pets.Hunger += Pets.Hunger + 10;
-                    WriteLine("  the dog was cured but his hunger increased by 10 points");
+                    Pets.Health += Pets.Health + 20;
+
+                    if (Pets.Health >= 100)
+                    {
+                        Pets.Health = 100;
+                        Coin[0] -= 5;
+                        WriteLine("  the dog's health is increased by 20 points");
+                        Pets.Hunger += Pets.Hunger + 10;
+                        WriteLine("  the dog was cured but his hunger increased by 10 points");
+                    }
+                    else
+                    {
+                        Coin[0] = Coin[0] - 12;
+                        WriteLine("  the dog's health is increased by 20 points");
+                        Pets.Hunger += Pets.Hunger + 10;
+                        WriteLine("  the dog was cured but his hunger increased by 10 points");
+                    }
+
+                    
                 }
                 else
                 {
-                    WriteLine("  The dog's health is already at its best\nyou can use the medicine only when the dog's health is 80 or less");
+                    WriteLine("  The dog's health is already at its best\nyou can use the medicine only when the dog's health is 99 or less");
                 }
             }
             else
             {
-                WriteLine("  you don't have enough coins to increase health\nYou need at least 20 coins to increase the dog's health");
+                WriteLine("  you don't have enough coins to increase health\nYou need at least 12 coins to increase the dog's health");
                 
             }
         }
@@ -134,6 +147,28 @@ namespace VirtualPets
             {
                 WriteLine("  you don't have enough coins to purchase a ball\nYou need at least 5 coins to purchase a ball");
             }
+        }
+
+        public static void AdjustRoomTemperature()
+        {
+            if (Pets.roomTemperature >=20 && Pets.roomTemperature <= 29)
+            {
+                WriteLine("Room is already at room temperature!");
+            }
+            else {
+
+                if (Pets.roomTemperature <= 20)
+                {
+                    Pets.roomTemperature += 5;
+                    WriteLine("The room temperature has been increased by 5 degrees");
+                }
+                else if (Pets.roomTemperature >= 30)
+                {
+                    Pets.roomTemperature -= 5;
+                    WriteLine("The room temperature has been decreased by 5 degrees");
+                }
+            }
+            
         }
 
         public static void PlayerInput() // player input method to take the instructions from the player.
@@ -173,8 +208,12 @@ namespace VirtualPets
                     case ConsoleKey.NumPad6:
                         PurchaseBall();
                         break;
+                    case ConsoleKey.D7: //keeps the room to room temperature
+                    case ConsoleKey.NumPad7:
+                        AdjustRoomTemperature();
+                        break;
                     default:
-                        //Console.WriteLine("Invalid entry, try again");
+                        Console.WriteLine("Key not recognised! use only the keys shown");
                         break;
                 }
                 
