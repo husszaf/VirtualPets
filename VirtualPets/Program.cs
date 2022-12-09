@@ -6,10 +6,10 @@ namespace VirtualPets
     {
         static void Main(string[] args)
         {
-            bool showMenu = true;
-            while (showMenu)
+            bool showMenu = true; //Loop that makes the console running
+            while (showMenu) //Loop starts here
             {
-                showMenu = MainMenu.Menu();
+                showMenu = MainMenu.Menu(); //while in loop, it will show the Menu (Method) in MainMenu class
             }
         }
     }
